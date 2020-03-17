@@ -12,8 +12,24 @@ const firebaseConfig = {
 
 class FB {
     constructor() {
-        Firebase.initializeApp(firebaseConfig);
+        Firebase.initializeApp(firebaseConfig)
         this.db = Firebase.firestore();
+    }
+
+    addEvent(summary, selectedStartDate, selectedEndDate, location) {
+        try {
+            return this.db
+                .collection("events")
+                .add({
+                    summary: summary,
+                    start: selectedStartDate,
+                    end: selectedEndDate,
+                    location: location
+                })
+        }
+        catch (err) {
+            console.error("Error adding the event document ", err)
+        }
     }
 }
 

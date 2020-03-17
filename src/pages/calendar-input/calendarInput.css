@@ -1,0 +1,86 @@
+.calendarInput-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.paper {
+  margin-top: 100px;
+  width: 500px;
+  height: 380px;
+  border: 1px solid black;
+}
+
+.calendarInput-container h1 {
+  text-align: center;
+}
+
+.summary-input {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.summary-input p {
+  padding-right: 10px;
+}
+
+.textField-input {
+  width: 75%;
+}
+
+.location-input {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.location-input p {
+  padding-right: 14px;
+}
+
+/* dates */
+.dates-input {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.start-date-input {
+  display: flex;
+  width: 40%;
+}
+
+.start-date-input p {
+  width: 25%;
+}
+
+.start-date-picker {
+  width: 75%;
+}
+
+.end-date-input {
+  display: flex;
+  width: 40%;
+}
+
+.end-date-input p {
+  width: 25%;
+}
+
+.end-date-picker {
+  width: 75%;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  padding-top: 30px;
+}
+
+.button {
+  width: 20%;
+}
