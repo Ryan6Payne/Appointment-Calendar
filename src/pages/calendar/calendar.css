@@ -7,3 +7,10 @@
   padding: 0 1px;
   white-space: normal;
 }
+
+.new-apt-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}

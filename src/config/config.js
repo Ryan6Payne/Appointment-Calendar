@@ -24,7 +24,8 @@ class FB {
                     summary: summary,
                     start: selectedStartDate,
                     end: selectedEndDate,
-                    location: location
+                    location: location,
+                    title: summary + " in " + location
                 })
         }
         catch (err) {

@@ -37,21 +37,8 @@ function CalendarInput(props) {
         }
     }
 
-    function testButton() {
-        console.log(summary)
-        console.log(location)
-        console.log(selectedStartDate)
-        console.log(selectedEndDate)
-    }
-
     return (
         <div className="calendarInput-container">
-            <Button
-                className="button"
-                variant="contained"
-                onClick={testButton}>
-                Test
-                        </Button>
             <Paper elevation={20} className="paper">
                 <h1>New Appointment</h1>
                 <div className="inputs">
