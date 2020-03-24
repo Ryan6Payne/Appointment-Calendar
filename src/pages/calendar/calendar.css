@@ -8,6 +8,22 @@
   white-space: normal;
 }
 
+.calendar-container {
+  position: relative;
+}
+
+.new-apt-button {
+  z-index: 1;
+}
+
+.calendar {
+  z-index: 1;
+}
+
+.update-container {
+  z-index: 2;
+}
+
 .new-apt-button {
   width: 100%;
   display: flex;

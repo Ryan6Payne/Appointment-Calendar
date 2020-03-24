@@ -18,7 +18,6 @@ function App() {
         <Switch>
           <Route exact path="/calendarInput" component={CalendarInput} />
           <Route exact path="/calendar" component={Calendar} />
-          <Route exact path="/calenderUpdate" component={CalendarUpdate} />
         </Switch>
       </BrowserRouter>
 

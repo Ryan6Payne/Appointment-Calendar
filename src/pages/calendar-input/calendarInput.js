@@ -37,6 +37,10 @@ function CalendarInput(props) {
         }
     }
 
+    function handleCancel() {
+        history.push("./calendar")
+    }
+
     return (
         <div className="calendarInput-container">
             <Paper elevation={20} className="paper">
@@ -114,6 +118,7 @@ function CalendarInput(props) {
                             Delete
                         </Button>
                         <Button
+                            onClick={handleCancel}
                             className="button"
                             variant="contained">
                             Cancel
