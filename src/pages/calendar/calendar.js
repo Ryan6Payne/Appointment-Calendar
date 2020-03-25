@@ -6,7 +6,6 @@ import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid"
 import FB from '../../config/config';
 import { Button } from '@material-ui/core'
-import { Link } from 'react-router-dom'
 
 import CalendarUpdate from '../calender-update/calenderUpdate'
 
@@ -18,6 +17,7 @@ function Calendar(props) {
     const [args, setArgs] = useState(null)
     const [popup, setPopUp] = useState(false)
 
+    /*C(R)UD*/
     function getEvents() {
         FB.db.collection("events")
             .get()
@@ -39,10 +39,11 @@ function Calendar(props) {
         history.push("/calendarInput")
     }
 
+    /*C(R)UD*/
     const handleDateClick = args => {
         setArgs(args)
         setPopUp(true)
-        /*  console.log(args) */
+        console.log(args)
     }
 
     if (popup == false) {

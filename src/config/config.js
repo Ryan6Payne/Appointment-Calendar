@@ -16,6 +16,7 @@ class FB {
         this.db = Firebase.firestore();
     }
 
+    /*(C)RUD*/
     addEvent(summary, selectedStartDate, selectedEndDate, location) {
         try {
             return this.db
@@ -32,6 +33,27 @@ class FB {
             console.error("Error adding the event document ", err)
         }
     }
+
+    /*CR(U)D*/
+    updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location) {
+
+        try {
+            return this.db
+                .collection("events")
+                .doc(`${eventId}`)
+                .update({
+                    summary: summary,
+                    start: selectedStartDate,
+                    end: selectedEndDate,
+                    location: location,
+                    title: summary + " in " + location
+                })
+        } catch (error) {
+            console.error("Error updating document: ", error);
+        }
+    }
+
+
 }
 
 export default new FB();

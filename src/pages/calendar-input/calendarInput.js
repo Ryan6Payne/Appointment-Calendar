@@ -31,6 +31,10 @@ function CalendarInput(props) {
     function saveEvent() {
         if (selectedStartDate > selectedEndDate) {
             alert("Your end date is before your start date! Please amend this.")
+        } else if (summary == "") {
+            alert("Please entery a summary!")
+        } else if (location == "") {
+            alert("Please entery a location!")
         } else {
             FB.addEvent(summary, selectedStartDate, selectedEndDate, location)
             history.push('/calendar')
@@ -111,11 +115,6 @@ function CalendarInput(props) {
                             variant="contained"
                             onClick={saveEvent}>
                             Save
-                        </Button>
-                        <Button
-                            className="button"
-                            variant="contained">
-                            Delete
                         </Button>
                         <Button
                             onClick={handleCancel}

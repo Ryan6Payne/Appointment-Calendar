@@ -15,7 +15,12 @@ import moment, { relativeTimeRounding } from 'moment';
 function CalendarUpdate({ args, popup }) {
 
     const [event, setEvent] = useState({})
+    const [eventId, setEventId] = useState("")
 
+    const [summary, setSummary] = useState("")
+    const [location, setLocation] = useState("")
+    const [selectedStartDate, setSelectedStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
+    const [selectedEndDate, setSelectedEndDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
 
     function getInputs() {
         const ref = FB.db.collection('events')
@@ -23,16 +28,45 @@ function CalendarUpdate({ args, popup }) {
         ref.where("title", "==", `${args.event.title}`)
             .get()
             .then(snapshot => {
-                let eventArr = {}
+                let eventObj = {}
+                let docId = ""
                 snapshot.forEach(doc => {
-                    eventArr = doc.data()
+                    eventObj = doc.data()
+                    docId = doc.id
                 })
-                setEvent(eventArr)
+                //Full event obj
+                setEvent(eventObj)
+                setEventId(docId)
+
+                //Take individual values out of the object and store them for use
+                setSummary(eventObj.summary)
+                setLocation(eventObj.location)
+                setSelectedStartDate(eventObj.start)
+                setSelectedEndDate(eventObj.end)
+
             }).catch(err => console.log(err))
     }
 
+    const handleStartDateChange = date => {
+        setSelectedStartDate(moment(date).format('YYYY-MM-DD'))
+    }
+
+    const handleEndDateChange = date => {
+        setSelectedEndDate(moment(date).format('YYYY-MM-DD'))
+    }
+
+
     function testButton() {
         console.log(event)
+        console.log(eventId)
+    }
+
+    function updateAppointment() {
+        try {
+            FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location).then(window.location.reload(false))
+        } catch (err) {
+            alert(err.message);
+        }
     }
 
     useEffect(() => {
@@ -51,7 +85,8 @@ function CalendarUpdate({ args, popup }) {
                     <div className="summary-input">
                         <p>Summary:</p>
                         <TextField
-                            value={event.summary}
+                            value={summary}
+                            onChange={e => setSummary(e.target.value)}
                             className="textField-input"
                             variant="outlined"
                             placeholder="Enter your summary here">
@@ -60,7 +95,8 @@ function CalendarUpdate({ args, popup }) {
                     <div className="location-input">
                         <p>Location:</p>
                         <TextField
-                            value={event.location}
+                            value={location}
+                            onChange={e => setLocation(e.target.value)}
                             className="textField-input"
                             variant="outlined"
                             placeholder="Enter your summary here">
@@ -72,7 +108,8 @@ function CalendarUpdate({ args, popup }) {
                             <p>Start Date:</p>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
-                                    value={event.start}
+                                    value={selectedStartDate}
+                                    onChange={handleStartDateChange}
                                     className="start-date-picker"
                                     disableToolbar
                                     variant="inline"
@@ -89,7 +126,8 @@ function CalendarUpdate({ args, popup }) {
                             <p>End Date:</p>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
-                                    value={event.end}
+                                    value={selectedEndDate}
+                                    onChange={handleEndDateChange}
                                     className="end-date-picker"
                                     disableToolbar
                                     variant="inline"
@@ -105,6 +143,7 @@ function CalendarUpdate({ args, popup }) {
                     </div>
                     <div className="buttons">
                         <Button
+                            onClick={updateAppointment}
                             className="button"
                             variant="contained"
                         >
