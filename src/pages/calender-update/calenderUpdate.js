@@ -76,7 +76,9 @@ function CalendarUpdate({ args }) {
 
     function updateAppointment() {
         try {
-            FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location).then(window.location.reload(false))
+            FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location).then(setTimeout(function () {
+                window.location.reload(false)
+            }, 1000));
         } catch (err) {
             alert(err.message);
         }
