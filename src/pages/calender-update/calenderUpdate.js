@@ -69,11 +69,6 @@ function CalendarUpdate({ args }) {
         }
     }
 
-    function testButton() {
-        console.log(event)
-        console.log(eventId)
-    }
-
     function updateAppointment() {
         try {
             FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location).then(setTimeout(function () {
@@ -169,12 +164,6 @@ function CalendarUpdate({ args }) {
                             className="button"
                             variant="contained">
                             Delete
-                        </Button>
-                        <Button
-                            onClick={testButton}
-                            className="button"
-                            variant="contained">
-                            TEST
                         </Button>
                         <Button
                             onClick={handleCancel}
