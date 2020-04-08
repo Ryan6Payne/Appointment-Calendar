@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 //Routing
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -7,11 +8,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //Pages
 import CalendarInput from './pages/calendar-input/calendarInput'
 import Calendar from './pages/calendar/calendar';
-import CalendarUpdate from './pages/calender-update/calenderUpdate';
 
 function App() {
-
-
   return (
     <div>
       <BrowserRouter>
@@ -20,11 +18,7 @@ function App() {
           <Route exact path="/calendar" component={Calendar} />
         </Switch>
       </BrowserRouter>
-      <div className="App">
-
-      </div>
     </div>
-
   )
 }
 
