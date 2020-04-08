@@ -53,6 +53,18 @@ class FB {
         }
     }
 
+    /*CRU(D)*/
+    deleteEvent(eventId) {
+        try {
+            return this.db
+                .collection("events")
+                .doc(`${eventId}`)
+                .delete()
+        } catch (error) {
+            console.error("Error delete document: ", error)
+        }
+    }
+
 
 }
 

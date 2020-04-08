@@ -10,19 +10,18 @@ import Calendar from './pages/calendar/calendar';
 import CalendarUpdate from './pages/calender-update/calenderUpdate';
 
 function App() {
+
+
   return (
-
     <div>
-
       <BrowserRouter>
         <Switch>
           <Route exact path="/calendarInput" component={CalendarInput} />
           <Route exact path="/calendar" component={Calendar} />
         </Switch>
       </BrowserRouter>
-
       <div className="App">
-        {/* <CalendarInput /> */}
+
       </div>
     </div>
 

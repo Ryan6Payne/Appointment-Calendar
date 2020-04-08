@@ -48,7 +48,7 @@ function Calendar(props) {
 
     if (popup == false) {
         return (
-            <div className="calendar-container">
+            <div className="calendar-container" data-testid="calendar-test">
 
                 <div className="new-apt-button">
                     <Button variant="outlined" onClick={calIn}>

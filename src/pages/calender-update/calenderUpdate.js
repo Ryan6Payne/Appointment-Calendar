@@ -9,10 +9,10 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import './calendarUpdate.css'
 import FB from '../../config/config';
-import moment, { relativeTimeRounding } from 'moment';
+import moment from 'moment';
 
 
-function CalendarUpdate({ args, popup }) {
+function CalendarUpdate({ args }) {
 
     const [event, setEvent] = useState({})
     const [eventId, setEventId] = useState("")
@@ -55,6 +55,19 @@ function CalendarUpdate({ args, popup }) {
         setSelectedEndDate(moment(date).format('YYYY-MM-DD'))
     }
 
+    function deleteAppointment() {
+
+
+
+        try {
+            FB.deleteEvent(eventId).then(setTimeout(function () {
+                window.location.reload(false)
+            }, 1000));
+
+        } catch (err) {
+            alert(err.message)
+        }
+    }
 
     function testButton() {
         console.log(event)
@@ -150,10 +163,16 @@ function CalendarUpdate({ args, popup }) {
                             Save
                         </Button>
                         <Button
-                            onClick={testButton}
+                            onClick={deleteAppointment}
                             className="button"
                             variant="contained">
                             Delete
+                        </Button>
+                        <Button
+                            onClick={testButton}
+                            className="button"
+                            variant="contained">
+                            TEST
                         </Button>
                         <Button
                             onClick={handleCancel}
