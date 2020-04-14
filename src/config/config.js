@@ -17,14 +17,14 @@ class FB {
     }
 
     /*(C)RUD*/
-    addEvent(summary, selectedStartDate, selectedEndDate, location) {
+    addEvent(summary, selectedStartDate, selectedEndDate, location, startTime, endTime) {
         try {
             return this.db
                 .collection("events")
                 .add({
                     summary: summary,
-                    start: selectedStartDate,
-                    end: selectedEndDate,
+                    start: selectedStartDate + "T" + startTime,
+                    end: selectedEndDate + "T" + endTime,
                     location: location,
                     title: summary + " in " + location
                 })
@@ -64,8 +64,6 @@ class FB {
             console.error("Error delete document: ", error)
         }
     }
-
-
 }
 
 export default new FB();

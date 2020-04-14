@@ -7,7 +7,7 @@
 .paper {
   margin-top: 100px;
   width: 500px;
-  height: 380px;
+  height: 450px;
   border: 1px solid black;
 }
 
@@ -83,4 +83,38 @@
 
 .button {
   width: 20%;
+}
+
+/* Times */
+.times-input {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.start-time-input {
+  display: flex;
+  width: 40%;
+}
+
+.start-time-input p {
+  width: 25%;
+}
+
+.start-time-picker {
+  width: 75%;
+}
+
+.end-time-input {
+  display: flex;
+  width: 40%;
+}
+
+.end-time-input p {
+  width: 25%;
+}
+
+.end-time-picker {
+  width: 75%;
 }
