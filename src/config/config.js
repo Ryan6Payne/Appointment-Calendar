@@ -41,7 +41,7 @@ class FB {
             return this.db
                 .collection("events")
                 .doc(`${eventId}`)
-                .set({
+                .update({
                     summary: summary,
                     start: selectedStartDate + "T" + startTime,
                     end: selectedEndDate + "T" + endTime,

@@ -52,8 +52,8 @@ function CalendarUpdate({ args }) {
                 setSelectedEndDate(moment(eventObj.end).format('YYYY-MM-DD'))
                 setSelectedStartTime(eventObj.start)
                 setSelectedEndTime(eventObj.end)
-                setStartTime(moment(eventObj.start).format("HH:MM"))
-                setEndTime(moment(eventObj.end).format("HH:MM"))
+                setStartTime(moment(eventObj.start).format("HH:mm"))
+                setEndTime(moment(eventObj.end).format("HH:mm"))
 
             }).catch(err => console.log(err))
     }
@@ -91,6 +91,13 @@ function CalendarUpdate({ args }) {
         } catch (err) {
             alert(err.message)
         }
+    }
+
+    function test() {
+        console.log(selectedStartTime)
+        console.log(startTime)
+        console.log(selectedEndDate)
+        console.log(endTime)
     }
 
     /* CRU(D) */
@@ -194,7 +201,6 @@ function CalendarUpdate({ args }) {
                                     margin="normal"
                                     id="time-picker"
                                     className="start-time-picker"
-
                                     value={selectedStartTime}
                                     onChange={handleStartTimeChange}
                                     KeyboardButtonProps={{
@@ -232,6 +238,12 @@ function CalendarUpdate({ args }) {
                             className="button"
                             variant="contained">
                             Delete
+                        </Button>
+                        <Button
+                            onClick={test}
+                            className="button"
+                            variant="contained">
+                            TEST
                         </Button>
                         <Button
                             onClick={handleCancel}
