@@ -44,14 +44,6 @@ function CalendarInput(props) {
         setEndTime(moment(date).format("HH:MM"))
     };
 
-
-    function test() {
-        console.log(selectedStartTime)
-        console.log(selectedEndTime)
-        console.log(startTime)
-        console.log(endTime)
-    }
-
     function saveEvent() {
         if (selectedStartDate > selectedEndDate) {
             alert("Your end date is before your start date! Please amend this.")
@@ -85,7 +77,8 @@ function CalendarInput(props) {
                             onChange={e => setSummary(e.target.value)}
                             className="textField-input"
                             variant="outlined"
-                            placeholder="Enter your summary here">
+                            placeholder="Enter your summary here"
+                            inputProps={{ maxLength: 255 }}>
                         </TextField>
                     </div>
                     <div className="location-input">
@@ -95,7 +88,8 @@ function CalendarInput(props) {
                             onChange={e => setLocation(e.target.value)}
                             className="textField-input"
                             variant="outlined"
-                            placeholder="Enter your summary here">
+                            placeholder="Enter your summary here"
+                            inputProps={{ maxLength: 255 }}>
                         </TextField>
                     </div>
 
@@ -178,12 +172,6 @@ function CalendarInput(props) {
                             variant="contained"
                             onClick={saveEvent}>
                             Save
-                        </Button>
-                        <Button
-                            className="button"
-                            variant="contained"
-                            onClick={test}>
-                            TEST
                         </Button>
                         <Button
                             onClick={handleCancel}

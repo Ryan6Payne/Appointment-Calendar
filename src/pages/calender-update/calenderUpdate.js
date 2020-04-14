@@ -57,13 +57,6 @@ function CalendarUpdate({ args }) {
             }).catch(err => console.log(err))
     }
 
-    function test() {
-        console.log(startTime)
-        console.log(endTime)
-        console.log(selectedStartDate)
-        console.log(selectedEndDate)
-    }
-
     const handleStartDateChange = date => {
         setSelectedStartDate(moment(date).format('YYYY-MM-DD'))
     }
@@ -94,12 +87,24 @@ function CalendarUpdate({ args }) {
     }
 
     function updateAppointment() {
-        try {
-            FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location, startTime, endTime).then(setTimeout(function () {
-                window.location.reload(false)
-            }, 1000));
-        } catch (err) {
-            alert(err.message);
+        if (selectedStartDate > selectedEndDate) {
+            alert("Your end date is before your start date! Please amend this.")
+        } else if (summary == "") {
+            alert("Please entery a summary!")
+        } else if (location == "") {
+            alert("Please entery a location!")
+        } else if (startTime == null) {
+            alert("Please enter a start time")
+        } else if (endTime == null) {
+            alert("Please enter an end time")
+        } else {
+            try {
+                FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location, startTime, endTime).then(setTimeout(function () {
+                    window.location.reload(false)
+                }, 1000));
+            } catch (err) {
+                alert(err.message);
+            }
         }
     }
 
@@ -175,7 +180,6 @@ function CalendarUpdate({ args }) {
                             </MuiPickersUtilsProvider>
                         </div>
                     </div>
-
                     <div className="times-input">
                         <div className="start-time-input">
                             <p>Start Time:</p>
@@ -209,7 +213,6 @@ function CalendarUpdate({ args }) {
                             </MuiPickersUtilsProvider>
                         </div>
                     </div>
-
                     <div className="buttons">
                         <Button
                             onClick={updateAppointment}
@@ -223,12 +226,6 @@ function CalendarUpdate({ args }) {
                             className="button"
                             variant="contained">
                             Delete
-                        </Button>
-                        <Button
-                            onClick={test}
-                            className="button"
-                            variant="contained">
-                            TEST
                         </Button>
                         <Button
                             onClick={handleCancel}
