@@ -12,17 +12,18 @@ import './calendarInput.css';
 import FB from '../../config/config';
 import moment from 'moment';
 
-
 function CalendarInput(props) {
 
     const { history } = props;
+
     const [summary, setSummary] = useState("")
+
     const [location, setLocation] = useState("")
     const [selectedStartDate, setSelectedStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
     const [selectedEndDate, setSelectedEndDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
+
     const [selectedStartTime, setSelectedStartTime] = useState(null)
     const [selectedEndTime, setSelectedEndTime] = useState(null)
-
     const [startTime, setStartTime] = useState(null)
     const [endTime, setEndTime] = useState(null)
 
@@ -36,12 +37,12 @@ function CalendarInput(props) {
 
     const handleStartTimeChange = date => {
         setSelectedStartTime(date);
-        setStartTime(moment(date).format("HH:MM"))
+        setStartTime(moment(date).format("HH:mm"))
     };
 
     const handleEndTimeChange = date => {
         setSelectedEndTime(date);
-        setEndTime(moment(date).format("HH:MM"))
+        setEndTime(moment(date).format("HH:mm"))
     };
 
     function saveEvent() {

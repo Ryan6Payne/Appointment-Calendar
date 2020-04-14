@@ -67,12 +67,12 @@ function CalendarUpdate({ args }) {
 
     const handleStartTimeChange = date => {
         setSelectedStartTime(date);
-        setStartTime(moment(date).format("HH:MM"))
+        setStartTime(moment(date).format("HH:mm"))
     };
 
     const handleEndTimeChange = date => {
         setSelectedEndTime(date);
-        setEndTime(moment(date).format("HH:MM"))
+        setEndTime(moment(date).format("HH:mm"))
     };
 
     function deleteAppointment() {
@@ -128,7 +128,8 @@ function CalendarUpdate({ args }) {
                             onChange={e => setSummary(e.target.value)}
                             className="textField-input"
                             variant="outlined"
-                            placeholder="Enter your summary here">
+                            placeholder="Enter your summary here"
+                            inputProps={{ maxLength: 255 }}>
                         </TextField>
                     </div>
                     <div className="location-input">
@@ -138,7 +139,8 @@ function CalendarUpdate({ args }) {
                             onChange={e => setLocation(e.target.value)}
                             className="textField-input"
                             variant="outlined"
-                            placeholder="Enter your summary here">
+                            placeholder="Enter your summary here"
+                            inputProps={{ maxLength: 255 }}>
                         </TextField>
                     </div>
 

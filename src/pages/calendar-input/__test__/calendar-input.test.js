@@ -8,7 +8,7 @@ it("renders without crashing", () => {
     ReactDOM.render(<CalendarInput />, div)
 })
 
-/* A snapshot of my calendarInput componenet (generated upon completion of component before further requirements), which is tested against the CURRENT calendarInput component*/
+/* A snapshot of my calendarInput component (generated upon completion of component before further requirements), which is tested against the CURRENT calendarInput component*/
 it("matches snapshot", () => {
     const tree = renderer.create(<CalendarInput />).toJSON();
     expect(tree).toMatchSnapshot();
