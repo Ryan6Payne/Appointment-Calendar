@@ -28,6 +28,7 @@ function CalendarUpdate({ args }) {
     const [startTime, setStartTime] = useState(null)
     const [endTime, setEndTime] = useState(null)
 
+    /* Read in the event object and set locally for use */
     function getInputs() {
         const ref = FB.db.collection('events')
 
@@ -40,7 +41,7 @@ function CalendarUpdate({ args }) {
                     eventObj = doc.data()
                     docId = doc.id
                 })
-                //Full event obj
+                //Set event object and event id locally for use
                 setEvent(eventObj)
                 setEventId(docId)
 
@@ -57,6 +58,7 @@ function CalendarUpdate({ args }) {
             }).catch(err => console.log(err))
     }
 
+    /* Date and time change handlers */
     const handleStartDateChange = date => {
         setSelectedStartDate(moment(date).format('YYYY-MM-DD'))
     }
@@ -75,27 +77,33 @@ function CalendarUpdate({ args }) {
         setEndTime(moment(date).format("HH:mm"))
     };
 
+    /* Cancel event update */
+    function handleCancel() {
+        window.location.reload(false)
+    }
+
+    /* CRU(D) */
     function deleteAppointment() {
         try {
             FB.deleteEvent(eventId).then(setTimeout(function () {
                 window.location.reload(false)
             }, 1000));
-
         } catch (err) {
             alert(err.message)
         }
     }
 
+    /* CRU(D) */
     function updateAppointment() {
         if (selectedStartDate > selectedEndDate) {
             alert("Your end date is before your start date! Please amend this.")
-        } else if (summary == "") {
+        } else if (summary === "") {
             alert("Please entery a summary!")
-        } else if (location == "") {
+        } else if (location === "") {
             alert("Please entery a location!")
-        } else if (startTime == null) {
+        } else if (startTime === null || "") {
             alert("Please enter a start time")
-        } else if (endTime == null) {
+        } else if (endTime === null) {
             alert("Please enter an end time")
         } else {
             try {
@@ -111,10 +119,6 @@ function CalendarUpdate({ args }) {
     useEffect(() => {
         getInputs();
     }, [])
-
-    function handleCancel() {
-        window.location.reload(false)
-    }
 
     return (
         <div className="calendarInput-container">
@@ -156,7 +160,7 @@ function CalendarUpdate({ args }) {
                                     variant="inline"
                                     format="MM/dd/yyyy"
                                     margin="normal"
-                                    id="date-picker-inline"
+                                    id="start-date-picker-inline"
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
@@ -174,7 +178,7 @@ function CalendarUpdate({ args }) {
                                     variant="inline"
                                     format="MM/dd/yyyy"
                                     margin="normal"
-                                    id="date-picker-inline"
+                                    id="end-date-picker-inline"
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}

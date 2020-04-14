@@ -1,11 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
-
-//Routing
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-//Pages
 import CalendarInput from './pages/calendar-input/calendarInput'
 import Calendar from './pages/calendar/calendar';
 

@@ -17,7 +17,6 @@ function CalendarInput(props) {
     const { history } = props;
 
     const [summary, setSummary] = useState("")
-
     const [location, setLocation] = useState("")
     const [selectedStartDate, setSelectedStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
     const [selectedEndDate, setSelectedEndDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
@@ -27,6 +26,7 @@ function CalendarInput(props) {
     const [startTime, setStartTime] = useState(null)
     const [endTime, setEndTime] = useState(null)
 
+    /* Date and time change hanlders */
     const handleStartDateChange = date => {
         setSelectedStartDate(moment(date).format('YYYY-MM-DD'))
     }
@@ -45,6 +45,12 @@ function CalendarInput(props) {
         setEndTime(moment(date).format("HH:mm"))
     };
 
+    /* Cancel new appointment creation */
+    function handleCancel() {
+        history.push("./calendar")
+    }
+
+    /* (C)RUD */
     function saveEvent() {
         if (selectedStartDate > selectedEndDate) {
             alert("Your end date is before your start date! Please amend this.")
@@ -60,10 +66,6 @@ function CalendarInput(props) {
             FB.addEvent(summary, selectedStartDate, selectedEndDate, location, startTime, endTime)
             history.push('/calendar')
         }
-    }
-
-    function handleCancel() {
-        history.push("./calendar")
     }
 
     return (

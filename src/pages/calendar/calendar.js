@@ -18,6 +18,7 @@ function Calendar(props) {
     const [popup, setPopUp] = useState(false)
 
     /*C(R)UD*/
+    /* This reads ALL */
     function getEvents() {
         FB.db.collection("events")
             .get()
@@ -31,20 +32,21 @@ function Calendar(props) {
             }).catch(err => console.log(err))
     }
 
-    useEffect(() => {
-        getEvents();
-    }, [])
-
-    function calIn() {
-        history.push("/calendarInput")
-    }
-
-    /*C(R)UD*/
-    const handleDateClick = args => {
+    /* This reads ONE */
+    const handleEventClick = args => {
         setArgs(args)
         setPopUp(true)
         console.log(args)
     }
+
+    /* Routes to page with new appointment form */
+    function calIn() {
+        history.push("/calendarInput")
+    }
+
+    useEffect(() => {
+        getEvents();
+    }, [])
 
     if (popup == false) {
         return (
@@ -59,7 +61,7 @@ function Calendar(props) {
                 <div className="calendar">
                     <FullCalendar
                         dateClick={""}
-                        eventClick={handleDateClick}
+                        eventClick={handleEventClick}
                         eventDrop={""}
 
                         defaultView="dayGridMonth"
@@ -78,7 +80,7 @@ function Calendar(props) {
     } else {
         return (
             <div>
-                <CalendarUpdate args={args} popup={popup} />
+                <CalendarUpdate args={args} />
             </div>
         )
     }
