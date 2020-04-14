@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Paper, TextField, Button } from '@material-ui/core'
 import {
     MuiPickersUtilsProvider,
-    KeyboardDatePicker,
+    KeyboardTimePicker,
+    KeyboardDatePicker
 } from '@material-ui/pickers';
 
 import 'date-fns';
@@ -21,6 +22,11 @@ function CalendarUpdate({ args }) {
     const [location, setLocation] = useState("")
     const [selectedStartDate, setSelectedStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
     const [selectedEndDate, setSelectedEndDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
+
+    const [selectedStartTime, setSelectedStartTime] = useState(null)
+    const [selectedEndTime, setSelectedEndTime] = useState(null)
+    const [startTime, setStartTime] = useState(null)
+    const [endTime, setEndTime] = useState(null)
 
     function getInputs() {
         const ref = FB.db.collection('events')
@@ -41,10 +47,21 @@ function CalendarUpdate({ args }) {
                 //Take individual values out of the object and store them for use
                 setSummary(eventObj.summary)
                 setLocation(eventObj.location)
-                setSelectedStartDate(eventObj.start)
-                setSelectedEndDate(eventObj.end)
+                setSelectedStartDate(moment(eventObj.start).format('YYYY-MM-DD'))
+                setSelectedEndDate(moment(eventObj.end).format('YYYY-MM-DD'))
+                setSelectedStartTime(eventObj.start)
+                setSelectedEndTime(eventObj.end)
+                setStartTime(moment(eventObj.start).format("HH:MM"))
+                setEndTime(moment(eventObj.end).format("HH:MM"))
 
             }).catch(err => console.log(err))
+    }
+
+    function test() {
+        console.log(startTime)
+        console.log(endTime)
+        console.log(selectedStartDate)
+        console.log(selectedEndDate)
     }
 
     const handleStartDateChange = date => {
@@ -55,10 +72,17 @@ function CalendarUpdate({ args }) {
         setSelectedEndDate(moment(date).format('YYYY-MM-DD'))
     }
 
+    const handleStartTimeChange = date => {
+        setSelectedStartTime(date);
+        setStartTime(moment(date).format("HH:MM"))
+    };
+
+    const handleEndTimeChange = date => {
+        setSelectedEndTime(date);
+        setEndTime(moment(date).format("HH:MM"))
+    };
+
     function deleteAppointment() {
-
-
-
         try {
             FB.deleteEvent(eventId).then(setTimeout(function () {
                 window.location.reload(false)
@@ -71,7 +95,7 @@ function CalendarUpdate({ args }) {
 
     function updateAppointment() {
         try {
-            FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location).then(setTimeout(function () {
+            FB.updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location, startTime, endTime).then(setTimeout(function () {
                 window.location.reload(false)
             }, 1000));
         } catch (err) {
@@ -151,6 +175,41 @@ function CalendarUpdate({ args }) {
                             </MuiPickersUtilsProvider>
                         </div>
                     </div>
+
+                    <div className="times-input">
+                        <div className="start-time-input">
+                            <p>Start Time:</p>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <KeyboardTimePicker
+                                    margin="normal"
+                                    id="time-picker"
+                                    className="start-time-picker"
+
+                                    value={selectedStartTime}
+                                    onChange={handleStartTimeChange}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change time',
+                                    }}
+                                />
+                            </MuiPickersUtilsProvider>
+                        </div>
+                        <div className="end-time-input">
+                            <p>End Time:</p>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <KeyboardTimePicker
+                                    margin="normal"
+                                    id="time-picker"
+                                    className="end-time-picker"
+                                    value={selectedEndTime}
+                                    onChange={handleEndTimeChange}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change time',
+                                    }}
+                                />
+                            </MuiPickersUtilsProvider>
+                        </div>
+                    </div>
+
                     <div className="buttons">
                         <Button
                             onClick={updateAppointment}
@@ -164,6 +223,12 @@ function CalendarUpdate({ args }) {
                             className="button"
                             variant="contained">
                             Delete
+                        </Button>
+                        <Button
+                            onClick={test}
+                            className="button"
+                            variant="contained">
+                            TEST
                         </Button>
                         <Button
                             onClick={handleCancel}

@@ -35,16 +35,16 @@ class FB {
     }
 
     /*CR(U)D*/
-    updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location) {
+    updateEvent(eventId, summary, selectedStartDate, selectedEndDate, location, startTime, endTime) {
 
         try {
             return this.db
                 .collection("events")
                 .doc(`${eventId}`)
-                .update({
+                .set({
                     summary: summary,
-                    start: selectedStartDate,
-                    end: selectedEndDate,
+                    start: selectedStartDate + "T" + startTime,
+                    end: selectedEndDate + "T" + endTime,
                     location: location,
                     title: summary + " in " + location
                 })
