@@ -93,13 +93,6 @@ function CalendarUpdate({ args }) {
         }
     }
 
-    function test() {
-        console.log(selectedStartTime)
-        console.log(startTime)
-        console.log(selectedEndDate)
-        console.log(endTime)
-    }
-
     /* CRU(D) */
     function updateAppointment() {
         if (selectedStartDate > selectedEndDate) {
@@ -238,12 +231,6 @@ function CalendarUpdate({ args }) {
                             className="button"
                             variant="contained">
                             Delete
-                        </Button>
-                        <Button
-                            onClick={test}
-                            className="button"
-                            variant="contained">
-                            TEST
                         </Button>
                         <Button
                             onClick={handleCancel}
