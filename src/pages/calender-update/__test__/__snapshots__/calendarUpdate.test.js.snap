@@ -8,7 +8,7 @@ exports[`matches snapshot 1`] = `
     className="MuiPaper-root paper MuiPaper-elevation20 MuiPaper-rounded"
   >
     <h1>
-      New Appointment
+      Edit Appointment
     </h1>
     <div
       className="inputs"
@@ -148,7 +148,7 @@ exports[`matches snapshot 1`] = `
                 autoFocus={false}
                 className="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedEnd"
                 disabled={false}
-                id="date-picker-inline"
+                id="start-date-picker-inline"
                 onAnimationStart={[Function]}
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -222,7 +222,7 @@ exports[`matches snapshot 1`] = `
                 autoFocus={false}
                 className="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedEnd"
                 disabled={false}
-                id="date-picker-inline"
+                id="end-date-picker-inline"
                 onAnimationStart={[Function]}
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -456,6 +456,54 @@ exports[`matches snapshot 1`] = `
             className="MuiButton-label"
           >
             Save
+          </span>
+        </button>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-contained button"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Delete
+          </span>
+        </button>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-contained button"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            TEST
           </span>
         </button>
         <button
